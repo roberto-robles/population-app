@@ -1,0 +1,36 @@
+<div>
+  <h1>UI Assessment  <small>Angular and C3</small></h1>
+</div>
+<hr/>
+
+<div class="row">
+  <div class="col-sm-3">
+    <div ng-dropdown-multiselect="" options="countries" selected-model="filteredCountries" extra-settings="dropdownSettings" events="countriesEvents"></div>
+  </div>
+  <div class="col-sm-3">
+    <div ng-dropdown-multiselect="" options="chartTypes" selected-model="chartTypeSelected" extra-settings="chartTypeSettings" events="chartTypeEvents"></div>
+  </div>
+  <div class="col-sm-3">
+    <button class="btn btn-default" ng-click="debug();">DBG!!!!</button>
+    <button class="btn btn-default" ng-click="fetchData();">Here</button>
+  </div>
+  <div class="col-sm-3">
+    <button class="btn btn-default" ng-click="purgeData();">Delete</button>
+  </div>
+
+</div>
+<div id="scrollable-div">
+  <table>
+    <thead>
+      <tr><th ng-repeat="h in headers| filter: dumbFilter">{{h}}</th></tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="country in countries | orderBy: 'country.doc.name'">
+        <td>{{country.doc.name}}</td>
+        <td ng-repeat="pop in country.doc.population">{{pop}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="chart" style="height:800px;"></div>
