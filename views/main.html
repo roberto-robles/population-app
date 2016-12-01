@@ -4,30 +4,37 @@
 <hr/>
 
 <div class="row">
-  <div class="col-sm-3">
+  <div class="col-sm-3 col-xs-6">
+    <label>Countries</label>
     <div ng-dropdown-multiselect="" options="countries" selected-model="filteredCountries" extra-settings="dropdownSettings" events="countriesEvents"></div>
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-3 col-xs-6">
+    <label>Chart Type</label>
     <div ng-dropdown-multiselect="" options="chartTypes" selected-model="chartTypeSelected" extra-settings="chartTypeSettings" events="chartTypeEvents"></div>
   </div>
-  <div class="col-sm-3">
-    <button class="btn btn-default" ng-click="debug();">DBG!!!!</button>
-    <button class="btn btn-default" ng-click="fetchData();">Here</button>
+  <div class="col-sm-6 col-xs-12">
+    <label>Info</label>
+    <textarea class="form-control" rows="4" disabled="disabled">{{info}}</textarea>
   </div>
-  <div class="col-sm-3">
-    <button class="btn btn-default" ng-click="purgeData();">Delete</button>
-  </div>
+  
+  <!-- <div class="col-sm-3"> -->
+  <!--   <button class="btn btn-default" ng-click="debug();">DBG!!!!</button> -->
+  <!--   <button class="btn btn-default" ng-click="fetchData();">Here</button> -->
+  <!-- </div> -->
+  <!-- <div class="col-sm-3"> -->
+  <!--   <button class="btn btn-default" ng-click="purgeData();">Delete</button> -->
+  <!-- </div> -->
 
 </div>
 <div id="scrollable-div">
-  <table>
+  <table class="table table-bordered">
     <thead>
-      <tr><th ng-repeat="h in headers| filter: dumbFilter">{{h}}</th></tr>
+      <tr><th ng-repeat="h in headers| filter: dumbFilter">{{::h}}</th></tr>
     </thead>
     <tbody>
-      <tr ng-repeat="country in countries | orderBy: 'country.doc.name'">
-        <td>{{country.doc.name}}</td>
-        <td ng-repeat="pop in country.doc.population">{{pop}}</td>
+      <tr ng-repeat="country in countries | orderBy: 'country.name'">
+        <td>{{::country.name}}</td>
+        <td ng-repeat="pop in country.population">{{::pop}}</td>
       </tr>
     </tbody>
   </table>
